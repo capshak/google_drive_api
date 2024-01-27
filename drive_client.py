@@ -11,7 +11,6 @@ from googleapiclient.errors import HttpError
 SCOPES = [
     "https://www.googleapis.com/auth/drive.metadata",
     'https://www.googleapis.com/auth/drive']
-SECURE_FILES = True
 
 
 def is_public(permission):
@@ -38,9 +37,9 @@ def permissions_check(permissions_list):
     for per in permissions_list:
         # skips owner permission
         if per['role'] != 'owner':
-            permissions_str = f'{per['type']} - {per['role']}'
+            permissions_str = f"{per['type']} - {per['role']}"
             if 'emailAddress' in per.keys():
-                permissions_str += f' - {per['emailAddress']}'
+                permissions_str += f" - {per['emailAddress']}"
 
             # appending permission output
             sharing_status.append(permissions_str)
@@ -114,7 +113,7 @@ def get_public_folders(service):
                 )
             .execute()
         )
-        folders = results.get("files", [])
+        folders.extend(results.get("files", []))
 
         page_token = results.get("nextPageToken", None)
         if page_token is None:
