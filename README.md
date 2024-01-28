@@ -99,5 +99,7 @@ anyone - reader<br>
 Currently the program sends an HTTP request for every action (for example every permission query / delete). 
 Batch requests can be used in order to improve HTTP payload created by the program.</li>
 <li>validation of multiple owners - 
-Currently the program expects that each file/folder will have one owner. Potentially the program can validate that files/folders don't have multiple owners. </li>
-
+Currently the program expects that each file/folder will have one owner. Potentially the program can validate that files/folders don't have multiple owners.</li>
+<li>list.files might return duplicated rows of some files - interesting to understand the reason</li>
+<li>when using the service and performing a loop, it might be better to insert the "try" section inside the loop, in order to avoid stopping iterating as intended - main example in function secure_file()</li>
+<li> ask for different scopes for different actions of the script - if the user doesn't need to secure_file() the script doesn't require metadata write permissions, etc.</li></ol>
